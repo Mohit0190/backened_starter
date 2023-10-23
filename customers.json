@@ -1,0 +1,20 @@
+[
+  {
+    "username": "Mohit Gagneja",
+    "password": 1234,
+    "gender": "Male",
+    "age": 20
+  },
+  {
+    "username": "Puneet Gagneja",
+    "password": 3456,
+    "gender": "Male",
+    "age": 20
+  },
+  {
+    "username": "Vansh",
+    "password": 789,
+    "gender": "Male",
+    "age": 20
+  }
+]

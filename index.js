@@ -1,13 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { router } = require('./routes/Routes');
+const { product_Router } = require('./routes/Products');
+const { customer_Router } = require('./routes/Customer');
 require('dotenv').config();
+const cors = require('cors');
 const app = express();
 // body Parser
 app.use(express.json());
 
-// Routes
-app.use('/api/v1', router);
+// foR frontened and backened
+app.use(cors());
+
+// Product Routes
+app.use('/api/v1/products',product_Router);
+
+// CustomerRoutes
+app.use('/api/v1/auth',customer_Router);
 
 // db Connection
 main().catch(err => console.log(err));
@@ -15,12 +23,6 @@ async function main() {
      await mongoose.connect(process.env.MONGO_DATABASE_KEY);
      console.log('db connection established');
 }
-
-
-
-
-
-
 
 
 app.listen(8080);

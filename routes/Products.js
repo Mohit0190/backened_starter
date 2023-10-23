@@ -1,5 +1,5 @@
 const express = require('express');
-const controller = require('../controller/controller');
+const controller = require('../controller/Product_controller');
 const Router = express.Router();
 
 
@@ -10,4 +10,4 @@ Router.get('/',controller.GET_All)
     .put('/:id', controller.PUT)
     .patch('/:id',controller.PATCH)
 
-exports.router = Router;
+exports.product_Router = Router;

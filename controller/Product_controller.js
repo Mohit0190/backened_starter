@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const model = require('../model/Model')
-const Customer = model.Customer;
+const model = require('../model/Product')
+const Products = model.Products;
 exports.GET_All = async (req, res) => {
     try {
 
-        const customer = await Customer.find();
-        res.json(customer)
+        const products = await Products.find();
+        res.json(products)
     }
     catch (err) {
         res.status(400).json(err)
@@ -14,19 +14,19 @@ exports.GET_All = async (req, res) => {
 
 exports.Get_WITH_ID = async (req, res) => {
     const id = req.params.id;
-    const customer = await Customer.findById(id);
-    res.json(customer)
+    const products = await Products.findById(id);
+    res.json(products)
 }
 
 exports.POST = async (req, res) => {
     const id = req.params.id;
-    try{
+    try {
 
-        const customer = new Customer(req.body);
-        customer.save();
-        res.json(customer)
+        const products = new Products(req.body);
+        Products.save();
+        res.json(products)
     }
-    catch(err){
+    catch (err) {
         res.json(err);
     }
 }
@@ -35,8 +35,8 @@ exports.PUT = async (req, res) => {
     const id = req.params.id;
     try {
 
-        const customer = await Customer.findOneAndReplace({ _id: id }, req.body, { new: true });
-        res.status(201).json(customer);
+        const products = await Products.findOneAndReplace({ _id: id }, req.body, { new: true });
+        res.status(201).json(products);
     }
     catch (err) {
         res.status(400).json(err);
@@ -47,8 +47,8 @@ exports.PATCH = async (req, res) => {
     const id = req.params.id;
     try {
 
-        const customer = await Customer.findOneAndUpdate({ _id: id }, req.body, { new: true });
-        res.status(201).json(customer);
+        const products = await Products.findOneAndUpdate({ _id: id }, req.body, { new: true });
+        res.status(201).json(products);
     }
     catch (err) {
         res.status(400).json(err);
@@ -59,8 +59,8 @@ exports.DELETE = async (req, res) => {
     const id = req.params.id;
     try {
 
-        const customer = await Customer.findOneAndDelete({ _id: id });
-        res.status(201).json(customer);
+        const products = await Products.findOneAndDelete({ _id: id });
+        res.status(201).json(products);
     }
     catch (err) {
         res.status(400).json(err);

@@ -4,9 +4,7 @@ const {Schema} = mongoose;
 const CustomerSchema = new Schema({
 
     username: {type:String, required:true,unique:true},
-    age: Number,
-    gender: String,
-    password:{type:String, required:true,unique:true},
+    password:{type:String, required:true,unique:true}
  
   });
 

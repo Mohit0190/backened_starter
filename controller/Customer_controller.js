@@ -6,7 +6,7 @@ exports.register = async (req, res) => {
     const { username, password } = req.body;
     const user = await Customer.findOne({ username: username });
     if (user) {
-        res.json({ message: "user already registered" })
+       return res.json({ message: "user already registered" })
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const newcustomer = new Customer({ username, password: hashedPassword })
@@ -19,11 +19,11 @@ exports.login = async(req,res)=>{
     const { username, password } = req.body;
     const user = await Customer.findOne({ username: username });
     if(!user){
-        res.json({message:"user does not exist"});
+       return res.json({message:"user does not exist"});
     }
     const isPasswordValid = await bcrypt.compare(password,user.password);
     if(!isPasswordValid){
-        res.json({message:"Username or Password is incorrect"});
+       return  res.json({message:"Username or Password is incorrect"});
     }
     const token = jwt.sign({id:user._id},"secret");
     res.json({token, userId:user._id});

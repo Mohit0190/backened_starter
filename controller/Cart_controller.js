@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const model = require('../model/Product')
-const Products = model.Products;
+const model = require('../model/Cart_model')
+const Cart = model.Cart;
 exports.GET_All = async (req, res) => {
     try {
 
-        const products = await Products.find();
-        res.json(products)
+        const cart = await Cart.find();
+        res.json(cart)
     }
     catch (err) {
         res.status(400).json(err)
@@ -14,16 +14,17 @@ exports.GET_All = async (req, res) => {
 
 exports.Get_WITH_ID = async (req, res) => {
     const id = req.params.id;
-    const products = await Products.findById(id);
-    res.json(products)
+    const cart = await Cart.findById(id);
+    res.json(cart)
 }
 
 exports.POST = async (req, res) => {
+
     try {
 
-        const products = new Products(req.body);
-        Products.save();
-        res.json(products)
+        const cart = new Cart(req.body);
+        Cart.save();
+        res.json(cart)
     }
     catch (err) {
         res.json(err);
@@ -34,8 +35,8 @@ exports.PUT = async (req, res) => {
     const id = req.params.id;
     try {
 
-        const products = await Products.findOneAndReplace({ _id: id }, req.body, { new: true });
-        res.status(201).json(products);
+        const cart = await Cart.findOneAndReplace({ _id: id }, req.body, { new: true });
+        res.status(201).json(cart);
     }
     catch (err) {
         res.status(400).json(err);
@@ -46,8 +47,8 @@ exports.PATCH = async (req, res) => {
     const id = req.params.id;
     try {
 
-        const products = await Products.findOneAndUpdate({ _id: id }, req.body, { new: true });
-        res.status(201).json(products);
+        const cart = await Cart.findOneAndUpdate({ _id: id }, req.body, { new: true });
+        res.status(201).json(cart);
     }
     catch (err) {
         res.status(400).json(err);
@@ -58,8 +59,8 @@ exports.DELETE = async (req, res) => {
     const id = req.params.id;
     try {
 
-        const products = await Products.findOneAndDelete({ _id: id });
-        res.status(201).json(products);
+        const cart = await Cart.findOneAndDelete({ _id: id });
+        res.status(201).json(cart);
     }
     catch (err) {
         res.status(400).json(err);

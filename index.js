@@ -4,6 +4,7 @@ const { product_Router } = require('./routes/Products');
 const { customer_Router } = require('./routes/Customer');
 require('dotenv').config();
 const cors = require('cors');
+const { cart_Router } = require('./routes/Cart');
 const app = express();
 // body Parser
 app.use(express.json());
@@ -12,10 +13,13 @@ app.use(express.json());
 app.use(cors());
 
 // Product Routes
-app.use('/api/v1/products',product_Router);
+app.use('/api/v1/products', product_Router);
 
 // CustomerRoutes
-app.use('/api/v1/auth',customer_Router);
+app.use('/api/v1/auth', customer_Router);
+
+// CartRoutes
+app.use('/api/v1/cart', cart_Router);
 
 // db Connection
 main().catch(err => console.log(err));
